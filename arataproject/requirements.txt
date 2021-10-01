@@ -1,6 +1,0 @@
-django
-whitenose
-gunicorn
-
-# 開発サーバーで立ち上げてブラウザで見る分にはこのファイルは不要
-# gunicorn（APサーバー）からGitHubを経由してHeroku（Webサーバー）で公開
