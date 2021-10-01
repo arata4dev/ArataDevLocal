@@ -1,0 +1,14 @@
+<!-- このファイル名は post_form.html から変更不可。CreateViewが自動で探すため -->
+
+{% extends "arataapp/base.html" %} 
+{% block main %} 
+
+<h2>新規投稿</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="登録">
+</form>
+
+{% endblock %}

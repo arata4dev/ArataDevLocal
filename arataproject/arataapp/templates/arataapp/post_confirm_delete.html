@@ -1,0 +1,15 @@
+<!-- このファイル名は post_confirm_delete.html から変更不可。DeletelViewが自動で探すため -->
+
+{% extends "arataapp/base.html" %} 
+{% block main %} 
+
+<h2>削除確認</h2>
+
+<p>{{ object.title }}を本当に削除してよろしいですか？</p>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="削除">
+</form>
+
+{% endblock %}
