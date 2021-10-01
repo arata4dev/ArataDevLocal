@@ -2,6 +2,9 @@ from django.db import models
 
 # Create your models here.
 
+from django.urls import reverse_lazy
+
+
 class Category(models.Model):
     name = models.CharField(
         max_length = 255,
@@ -62,3 +65,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    # 新規投稿作成後に作成したポストが表示される、そのためのリンクを教えてあげる関数
+    def get_absolute_url(self):
+        return reverse_lazy("detail", args=[self.id])
