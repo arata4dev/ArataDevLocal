@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j9a_vx$bgj0)01jn+kkc61(n8n!ac!hwi$ptahk%g0n47y8z$b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # 実際にユーザーに後悔するときにはFalseにしないといけない
 
 ALLOWED_HOSTS = ['*']
@@ -32,14 +32,15 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'arataapp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'arataapp'
 ]
+# Djangoは上から順番に見ていくのでログインページをカスタマイズするときはadminより前に持ってくる
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,7 +61,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
+        'APP_DIRS': True, # これをFalseにすると同じ位置のTemplateを参照しないらしい（未検証）
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -136,3 +137,10 @@ STATICFILES_STORAGR = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Login/Logout系
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'

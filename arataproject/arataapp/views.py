@@ -3,9 +3,10 @@ from django.views.generic import TemplateView
 class AboutView(TemplateView):
     template_name = "about.html"
 
+class AccountView(TemplateView):
+    template_name = "account.html"
+
 from. models import Post
-
-
 
 ### 一覧
 ### テンプレート名は post_list.html にする必要
