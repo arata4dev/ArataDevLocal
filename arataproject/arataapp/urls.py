@@ -1,8 +1,12 @@
 from django.urls import path
 
-from .views import IndexView, AboutView
+from . import views
+from .views import AboutView
 
 urlpatterns = [
-    path('', IndexView.as_view()),
-    path('about/', AboutView.as_view())
+    path('', views.Index.as_view(), name="index"),
+    path('about/', AboutView.as_view()),
+    path('detail/<pk>', views.Detail.as_view(), name="detail"),
 ]
+
+# pk = primary key (IDのこと)

@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("arataapp.urls"))
+    # admin以外の場合、全てアプリの方のURLS.PYを参照するという仕組み
 ]

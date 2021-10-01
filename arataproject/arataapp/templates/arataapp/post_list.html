@@ -1,0 +1,14 @@
+<!-- このファイル名は post_list.html から変更不可。ListViewが自動で探すため -->
+
+{% extends "arataapp/base.html" %} 
+{% block main %} 
+
+<h2>ポスト一覧</h2>
+
+<ol>
+    {% for post in object_list %}
+        <li><a href="{% url 'detail' post.id %}">{{ post.title }}</a></li>
+    {% endfor %}
+</ol>
+
+{% endblock %}
