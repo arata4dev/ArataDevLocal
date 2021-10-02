@@ -127,12 +127,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 # もとはstatic、自由に変更可能
 
+### Project直下のStatic = adminページなどの編集
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 #ホワイトノイズの設定を追加
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGR = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
@@ -162,7 +164,3 @@ SERVER_EMAIL = "server@example.com"
 AUTH_USER_MODEL = 'arataapp.User'
 
 
-
-
-### Project直下のStatic = adminページなどの編集
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
