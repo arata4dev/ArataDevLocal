@@ -128,6 +128,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 
+STATIC_URL = '/static/'
+# もとはstatic、自由に変更可能
+
 #ホワイトノイズの設定を追加
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGR = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -160,8 +163,6 @@ AUTH_USER_MODEL = 'arataapp.User'
 
 
 
-STATIC_URL = '/static/'
-# もとはstatic、自由に変更可能
 
 ### Project直下のStatic = adminページなどの編集
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
