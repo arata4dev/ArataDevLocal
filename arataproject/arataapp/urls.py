@@ -2,6 +2,7 @@ from django.urls import path
 from django.contrib.auth.decorators import login_required
 
 from . import views
+from .admin import mypage_site
 
 account_view = views.AccountView.as_view()
 
@@ -14,6 +15,9 @@ urlpatterns = [
     
     path('about/', views.AboutView.as_view()),
     path('account/', login_required(account_view), name="account"),
+    path('signup', views.SignUpView.as_view(), name="signup"),
+
+    path('mypage/', mypage_site.urls),
 ]
 
 # pk = primary key (IDのこと)

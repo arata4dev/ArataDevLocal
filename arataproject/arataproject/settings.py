@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+# osが見つからないとエラーが出たので自分で追加
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'anymail',
 ]
 # Djangoは上から順番に見ていくのでログインページをカスタマイズするときはadminより前に持ってくる
 
@@ -60,7 +64,7 @@ ROOT_URLCONF = 'arataproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True, # これをFalseにすると同じ位置のTemplateを参照しないらしい（未検証）
         'OPTIONS': {
             'context_processors': [
@@ -123,11 +127,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/files/'
-# もとはstatic、自由に変更可能
-
-# osが見つからないとエラーが出たので自分で追加
-import os
 
 #ホワイトノイズの設定を追加
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -142,7 +141,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Login/Logout系
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/mypage/'
 LOGOUT_REDIRECT_URL = '/login/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+### MAIL設定
+
+ANYMAIL = {
+    "MAILGUN_API_KEY" : "8b4f65eeba8afa2ee4627fee314be681-dbdfb8ff-c4f5bf4c",
+    "MAILGUN_SENDER_DOMAIN" : "sandbox1568eef212d54ae5b5fa32442d077d54.mailgun.org",
+}
+EMAIL_BACKEND = 'anymail.backends.mailgun.EmailBackend'
+DEFAUL_FROM_EMAIL = "hondo@example.com"
+SERVER_EMAIL = "server@example.com"
+
+
+### USER設定
+AUTH_USER_MODEL = 'arataapp.User'
+
+
+
+STATIC_URL = '/static/'
+# もとはstatic、自由に変更可能
+
+### Project直下のStatic = adminページなどの編集
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
